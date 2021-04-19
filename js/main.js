@@ -79,17 +79,36 @@
 			valueChange: null,
 			stop: null,
 			tooltipFormat: function (e) {
-				var val = e.value, label;
-			    if (val < 1) label = "Not at all";
-			    else if (val < 2) label = "Very mildly";
-			    else if (val < 4) label = "Mildly";
-			    else if (val < 7) label = "Moderately";
-			    else if (val < 9) label = "Severely";
-			    else if (val < 10) label = "Very severely";
-			    else if (val > 9) label = "Completely";
-			    else label = "BLANK";
-
-			    return "<button class='back hidden'></button>" + val + "<span>" + label + "</span><button class='continue hidden'></button>";
+				var nextBtn = "<button class='continue hidden'></button>";
+				if(itemIndex >= items.length-1){
+					nextBtn = "<a href='#submit-page'><button class='finish hidden'><svg x='0px' y='0px' width='40px' height='40px' viewBox='-4.447 -6.75 40 40' enable-background='new -4.447 -6.75 40 40' xml:space='preserve'><g><path fill='#FFFFFF' d='M34.458-6.75c-9.762,5.796-18.1,14.316-24.254,24.69l-9.7-9.482l-4.951,4.638l17.623,20.011 c4.147-14.63,12.063-27.292,22.432-36.488L34.458-6.75z'/></g></svg></button></a>";
+				}
+				if(itemIndex === 10){
+					var val = e.value, label;
+				    if (val < 1) label = "I'm alone";
+				    else if (val < 2) label = "1 person";
+				    else if (val < 3) label = "2 people";
+				    else if (val < 4) label = "3 people";
+				    else if (val < 5) label = "4 people";
+				    else if (val < 6) label = "5 people";
+				    else if (val < 7) label = "6 people";
+				    else if (val < 8) label = "7 people";
+				    else if (val < 9) label = "8 people";
+				    else if (val < 10) label = "9 people";
+				    else label = "10 people<br />or more";
+				    return "<button class='back hidden'></button><span>" + label + "</span>"+nextBtn;
+				} else {
+					var val = e.value, label;
+				    if (val < 1) label = "Not at all";
+				    else if (val < 2) label = "Very mildly";
+				    else if (val < 4) label = "Mildly";
+				    else if (val < 7) label = "Moderately";
+				    else if (val < 9) label = "Severely";
+				    else if (val < 10) label = "Very severely";
+				    else if (val > 9) label = "Completely";
+				    else label = "BLANK";
+				    return "<button class='back hidden'></button>" + val + "<span>" + label + "</span>"+nextBtn;
+				}
 			}
 	};
 	
@@ -199,6 +218,7 @@
             else if(itemIndex >= items.length -1){
             	$('.rs-tooltip button.continue').addClass('hidden');
             	$('.rs-tooltip button.back').removeClass('hidden');
+            	$('.rs-tooltip button.finish').removeClass('hidden');
            
             } else {
             	$('.rs-tooltip button.continue').removeClass('hidden');
@@ -227,6 +247,8 @@
         	
         	if(responses.getResponse(itemIndex) !== null){
         		slider.roundSlider("setValue", responses.getResponse(itemIndex));
+        	} else if(itemIndex === 10){
+        		slider.roundSlider("setValue" , 0);
         	} else {
         		slider.roundSlider("setValue" , 5);	
         	}
@@ -247,6 +269,8 @@
         	
         	if(responses.getResponse(itemIndex) !== null){
         		slider.roundSlider("setValue", responses.getResponse(itemIndex));
+        	} else if(itemIndex === 10){
+        		slider.roundSlider("setValue" , 0);
         	} else {
         		slider.roundSlider("setValue" , 5);	
         	}

@@ -28,6 +28,9 @@ var items = [
 	 },
 	 {
 	 	string: "I'm currently fond of my job"
+	 },
+	 {
+		string: "I'm alone or with a number of people"
 	 }
 	];
 

@@ -79,7 +79,7 @@ app adding his own styles here
     color: #594fbf;
 }
 
-#handle1 .rs-tooltip button.continue, #handle1 .rs-tooltip button.back{
+#handle1 .rs-tooltip button.continue, #handle1 .rs-tooltip button.back, #handle1 .rs-tooltip button.finish{
 	position: absolute;
 	background: none;
 	color: #ffffff;
@@ -100,6 +100,17 @@ app adding his own styles here
 	right: 17%;
 }
 
+.rs-tooltip button.finish{
+	color: #fff;
+	right: 13%;
+	top: -38px!important;
+}
+
+.rs-tooltip button.finish svg{
+	width: 40px;
+	height: 40px;
+}
+
 .rs-tooltip button.back{
 	left: 17%;
 }
@@ -115,6 +126,21 @@ app adding his own styles here
   	border-left: 30px solid rgba(255,255,255,1);
   	left: 90%;
   	top: -5px;
+}
+
+#handle1 .rs-tooltip button.finish:after{
+	content: "";
+    position: absolute;
+    display: block;
+    width: 30px; 
+	height: 30px; 
+	left: 90%;
+  	top: -5px; 
+	font-size: 1.6em;
+    text-align: center;
+    color: #fff!important;
+    border:none;
+    background: none;
 }
 
 #handle1 .rs-tooltip button.back:after{
