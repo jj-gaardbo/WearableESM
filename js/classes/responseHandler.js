@@ -3,16 +3,26 @@ class ResponseHandler {
 	constructor(){
 		this.responses = [];
 		this.startTimestamp = null;
+		this.endTimestamp = null;
 		this.durationstring = "";
 	}
 	
-	setResponse(index, value){
-		this.responses[index] = {index: value};
+	getEndUnixTimestamp(){
+		return this.endTimestamp.getTime();
 	}
 	
-	getResponse(index){
-		if(typeof this.responses[index] !== 'undefined'){
-			return this.responses[index].index;
+	getStartUnixTimestamp(){
+		return this.startTimestamp.getTime();
+	}
+	
+	setResponse(i, val){
+		var obj = {item: i, value : val};
+		this.responses[i] = obj;
+	}
+	
+	getResponse(i){
+		if(typeof this.responses[i] !== 'undefined'){
+			return this.responses[i].value;
 		} else {
 			return null;
 		}
@@ -26,7 +36,15 @@ class ResponseHandler {
 		this.startTimestamp = startTime;
 	}
 	
+	setEndTime(endTime){
+		this.endTimestamp = endTime;
+	}
+	
 	setDuration(duration){
 		this.durationString = duration;
+	}
+	
+	getDuration(){
+		return this.durationString;
 	}
 }

@@ -9,6 +9,14 @@ class TimeHandler {
 		this.endTimestamp = null;
 	}
 	
+	getEndTime(){
+		return this.endTimestamp;
+	}
+	
+	getStartTime(){
+		return this.startTimestamp;
+	}
+	
 	calculateDuration(){
 		// get total seconds between the times
 		var delta = Math.abs(this.endTimestamp - this.startTimestamp) / 1000;

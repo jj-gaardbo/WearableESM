@@ -3,6 +3,9 @@ var items = [
 	 	string: "I'm currently preoccupied with circumstances outside of work"
 	 },
 	 {
+		 string: "I'm currently feeling stressed"
+	 },
+	 {
 	 	string: "I feel like time passes by fast"
 	 },
 	 {

@@ -72,6 +72,19 @@ app adding his own styles here
   }
 }
 
+div.hr{
+	background: none;
+	height: auto;
+	display: block;
+	width: 100%;
+	text-align:center; 
+	color: #ffffff;
+	position:absolute;
+	top: 2%;
+	z-index: 100;
+	font-size: 0.5em;
+}
+
 .time{
 	display: block;
 	position: absolute;
@@ -102,6 +115,34 @@ app adding his own styles here
 	height: 99vh;
 }
 
+#progress .rs-handle{
+	display: none;
+}
+
+#progress .rs-bg-color{
+	background: #000000;
+}
+
+#progress .rs-range-color  {
+    background-color: rgba(255,255,255, 0.6);
+    -webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+#progress .rs-path-color  {
+    background-color: rgba(0,0,0, 1)!important;
+}
+
+#progress .rs-tooltip{
+	display: none;
+}
+
+.hidden-progress{
+	background-color: #000000!important;
+}
+
 #handle1 .rs-border, #progress .rs-border{
 	border: none;
 }
@@ -110,10 +151,6 @@ app adding his own styles here
 #handle1 .rs-handle  {
 	margin: -10px 0px 0px 0px !important;
     border-width: 10px 10px 10px 10px;
-}
-
-#progress .rs-handle{
-	display: none;
 }
 
 #handle1 .rs-handle-dot{
@@ -140,19 +177,20 @@ app adding his own styles here
 #handle1 .rs-tooltip  {
     top: 77%;
     width: 75%;
-    font-size: 32px;
-    font-weight: bolder;
-    line-height: 26px;
-    color: #fff;
 }
 
-#handle1 .rs-tooltip span  {
+#handle1 .rs-tooltip .indicator  {
 	display: block;
 	width: 100%;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bolder;
-    color: #594fbf;
+    line-height: 30px;
+}
+
+#handle1 .rs-tooltip .indicator strong {
+    font-size: 32px;
+    font-weight: bolder;
 }
 
 #handle1 .rs-tooltip button.continue, #handle1 .rs-tooltip button.back, #handle1 .rs-tooltip button.finish{
@@ -165,7 +203,7 @@ app adding his own styles here
     padding: 25px;
     font-weight: bolder;
     width: 1px;
-    top: 0px;
+    top: -10px;
     -webkit-transition: all 0.3s 0.3s ease;
 	-moz-transition: all 0.3s 0.3s ease;
 	-o-transition: all 0.3s 0.3s ease;
@@ -173,12 +211,12 @@ app adding his own styles here
 }
 
 .rs-tooltip button.continue{
-	right: 17%;
+	right: 14%;
 }
 
 .rs-tooltip button.finish{
 	color: #fff;
-	right: 13%;
+	right: 11%;
 	top: -38px!important;
 }
 
@@ -188,7 +226,7 @@ app adding his own styles here
 }
 
 .rs-tooltip button.back{
-	left: 17%;
+	left: 14%;
 }
 
 #handle1 .rs-tooltip button.continue:after{
@@ -202,6 +240,7 @@ app adding his own styles here
   	border-left: 30px solid rgba(255,255,255,1);
   	left: 90%;
   	top: -5px;
+  	z-index: 101;
 }
 
 #handle1 .rs-tooltip button.finish:after{
@@ -236,28 +275,8 @@ app adding his own styles here
 	background: #000000;
 }
 
-#progress .rs-bg-color{
-	background: #000000;
-}
-
-#handle1 .rs-range-color  {
-    background-color: #594fbf;
-}
-
-#progress .rs-range-color  {
-    background-color: rgba(60,60,60,1);
-}
-
 #handle1 .rs-path-color  {
-    background-color: #54616e;
-}
-
-#progress .rs-path-color  {
-    background: #000;
-}
-
-#progress .rs-tooltip{
-	display: none;
+    background-color: rgba(84,97,110, 1);
 }
 
 
@@ -279,4 +298,94 @@ app adding his own styles here
 
 .item p{
 	color: #fff;
+}
+
+
+/* COLORMANAGER CLASSES*/
+.zero--text{
+	color: #08BEC2!important;
+}
+
+.one--text{
+	color: #07B6C8!important;
+}
+
+.two--text{
+	color: #06AECD!important;	
+}
+
+.three--text{
+	color: #05a6d3!important;
+}
+
+.four--text{
+	color: #059dd9!important;	
+}
+
+.five--text{
+	color: #0496df!important;
+}
+
+.six--text{
+	color: #038ee5!important;
+}
+
+.seven--text{
+	color: #0386ea!important;
+}
+
+.eight--text{
+	color: #027df0!important;
+}
+
+.nine--text{
+	color: #0173f6!important;
+}
+
+.ten--text{
+	color: #006dfc!important;
+}
+
+.zero--bg{
+	background-color: #1093FF;
+}
+
+.one--bg{
+	background-color: #07B6C8;
+}
+
+.two--bg{
+	background-color: #06AECD;	
+}
+
+.three--bg{
+	background-color: #05a6d3;
+}
+
+.four--bg{
+	background-color: #059dd9;	
+}
+
+.five--bg{
+	background-color: #0496df;
+}
+
+.six--bg{
+	background-color: #038ee5;
+}
+
+.seven--bg{
+	background-color:  #0386ea;
+}
+
+.eight--bg{
+	background-color: #027df0;
+}
+
+.nine--bg{	
+	background-color: #0173f6;
+}
+
+.ten--bg{
+	background-color: #006dfc;
 }

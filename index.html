@@ -14,16 +14,20 @@
 <body>
    <div class="ui-page ui-page-active" id="start-page">
       <div class="ui-content">
-         <a href="page-slider" class="start">Start</a>
+         <a href="page-slider" class="start">
+         	<button type="button" class="ui-btn">Start</button>
+         </a>
       </div>
    </div>
    
    <div class="ui-page data-page" id="page-slider">
       <div class="ui-content">
+      
          <div id="handle1" class="roundslider"></div>
          <div id="progress" class="roundslider"></div>
          
          <div class="item"></div>
+         <div class="hr"></div>
          
          <div class="tutorial hidden"></div>         
       </div>
@@ -32,7 +36,9 @@
      <div class="ui-page" id="submit-page">
 	  <span class="time"></span>
       <div class="ui-content">
-         <a href="#" id="submit">Submit</a>
+         <a href="#" id="submit">
+         	<button type="button" class="ui-btn">Submit</button>
+         </a>
       </div>
    </div>
    	<script src="lib/tau/wearable/js/tau.min.js"></script>
@@ -40,8 +46,10 @@
 	<script src="js/app.js"></script>
 	<script src="js/lowBatteryCheck.js"></script>
 	<script src="js/circle-helper.js"></script>
+	<script src="js/classes/hrHandler.js"></script>
 	<script src="js/classes/responseHandler.js"></script>
 	<script src="js/classes/timeHandler.js"></script>
+	<script src="js/classes/colorManager.js"></script>
 	<script src="js/items.js"></script>
 	<script src="js/main.js"></script>
 </body>
