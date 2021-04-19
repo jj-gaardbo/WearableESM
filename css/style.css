@@ -1,0 +1,180 @@
+/* this file is left blank on purpose, if developer can't find classes he needs in framework, he can customize his
+app adding his own styles here
+ */
+ *{
+ 	font-family: Arial, sans-serif;
+ }
+ 
+.hidden{
+	opacity: 0;
+	visibility: hidden;
+}
+
+.roundslider{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+#progress{
+	position: absolute;
+	top: 2.9vh;
+	left: 2.9vw;
+	width: 99vw;
+	height: 99vh;
+}
+
+#handle1 .rs-border, #progress .rs-border{
+	border: none;
+}
+
+
+#handle1 .rs-handle  {
+	margin: -10px 0px 0px 0px !important;
+    border-width: 10px 10px 10px 10px;
+}
+
+#progress .rs-handle{
+	display: none;
+}
+
+#handle1 .rs-handle-dot{
+	border: 0px solid #AAA;
+    padding: 10px;
+}
+
+#handle1 .rs-handle-dot:after{
+	background-color: #fff;
+	border: none;
+}
+
+#handle1 .rs-handle:before  {
+    display: none;
+    content: " ";
+    position: absolute;
+    height: 4px;
+    width: 4px;
+    background: blue;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 100px;
+}
+#handle1 .rs-tooltip  {
+    top: 77%;
+    width: 75%;
+    font-size: 32px;
+    font-weight: bolder;
+    line-height: 26px;
+    color: #fff;
+}
+
+#handle1 .rs-tooltip span  {
+	display: block;
+	width: 100%;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bolder;
+    color: #594fbf;
+}
+
+#handle1 .rs-tooltip button.continue, #handle1 .rs-tooltip button.back{
+	position: absolute;
+	background: none;
+	color: #ffffff;
+	line-height: 16px;
+    border-radius: 0;
+    border-width: 0;
+    padding: 25px;
+    font-weight: bolder;
+    width: 1px;
+    top: 0px;
+    -webkit-transition: all 0.4s 0.3s ease;
+	-moz-transition: all 0.4s 0.3s ease;
+	-o-transition: all 0.4s 0.3s ease;
+	transition: all 0.4s 0.3s ease;
+}
+
+.rs-tooltip button.continue{
+	right: 17%;
+}
+
+.rs-tooltip button.back{
+	left: 17%;
+}
+
+#handle1 .rs-tooltip button.continue:after{
+	content: '';
+	position: absolute;
+	display: block;
+	width: 30px; 
+  	height: 30px; 
+  	border-top: 15px solid transparent;
+  	border-bottom: 15px solid transparent;
+  	border-left: 30px solid rgba(255,255,255,1);
+  	left: 90%;
+  	top: -5px;
+}
+
+#handle1 .rs-tooltip button.back:after{
+	content: '';
+	position: absolute;
+	display: block;
+	width: 30px; 
+  	height: 30px; 
+  	border-top: 15px solid transparent;
+  	border-bottom: 15px solid transparent;
+  	border-right: 30px solid rgba(255,255,255,1);
+  	left: calc(10% - 30px);
+  	top: -5px;
+}
+
+#handle1 .rs-bg-color{
+	background: #000000;
+}
+
+#progress .rs-bg-color{
+	background: #000000;
+}
+
+#handle1 .rs-range-color  {
+    background-color: #594fbf;
+}
+
+#progress .rs-range-color  {
+    background-color: rgba(60,60,60,1);
+}
+
+#handle1 .rs-path-color  {
+    background-color: #54616e;
+}
+
+#progress .rs-path-color  {
+    background: #000;
+}
+
+#progress .rs-tooltip{
+	display: none;
+}
+
+
+.item{
+	overflow: visible;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 0.8em;
+	text-align: center;
+	z-index: 99;
+	position: absolute;
+	box-sizing: border-box;
+	width: 360px;
+	height: 220px;
+	padding: 35px 60px 10px;
+}
+
+.item p{
+	color: #fff;
+}
