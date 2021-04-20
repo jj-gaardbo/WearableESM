@@ -104,10 +104,10 @@ app adding his own styles here
     font-weight: bolder;
     width: 1px;
     top: 0px;
-    -webkit-transition: all 0.4s 0.3s ease;
-	-moz-transition: all 0.4s 0.3s ease;
-	-o-transition: all 0.4s 0.3s ease;
-	transition: all 0.4s 0.3s ease;
+    -webkit-transition: all 0.3s 0.3s ease;
+	-moz-transition: all 0.3s 0.3s ease;
+	-o-transition: all 0.3s 0.3s ease;
+	transition: all 0.3s 0.3s ease;
 }
 
 .rs-tooltip button.continue{
