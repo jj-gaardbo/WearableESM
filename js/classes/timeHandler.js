@@ -28,11 +28,15 @@ class TimeHandler {
 		// what's left is seconds
 		var seconds = Math.floor(delta % 60);  // in theory the modulus is not required
 		
-		this.days = days;
-		this.hours = hours;
-		this.minutes = minutes;
-		this.seconds = seconds;
+		this.days = this.leadingZero(days);
+		this.hours = this.leadingZero(hours);
+		this.minutes = this.leadingZero(minutes);
+		this.seconds = this.leadingZero(seconds);
 		
+	}
+	
+	leadingZero(n) {
+	    return (n < 10) ? ("0" + n) : n;
 	}
 	
 	stop(){

@@ -1,5 +1,8 @@
 (function($){	
 	
+	var tutorialInterval = null;
+	var tutorialTimeout = null;
+	
 	var timer = null;
 	
 	var responses = new ResponseHandler();
@@ -203,6 +206,11 @@
 		
 		rotaryEventHandler = function(e) {
 			var prevVal;
+			
+			$('.tutorial').addClass('hidden');
+			clearInterval(tutorialInterval);
+			clearTimeout(tutorialTimeout);
+			
             if (e.detail.direction === 'CW') {
                 /* Right direction */
 				prevVal = slider.roundSlider("getValue");
@@ -290,7 +298,27 @@
 			responses.setDuration(timer.getDurationString());
 			timer.show();
     	});
-        
+		
+		var dataPage = $('.ui-page');
+		tutorialInterval = setInterval(function(){
+			if(dataPage.hasClass('data-page')){
+				if(tutorialTimeout === null){
+					tutorialTimeout = setTimeout(function(){
+						$(document).find('.tutorial').removeClass('hidden');
+						clearInterval(tutorialInterval);
+						tutorialInterval = null;
+					}, 5000);
+				}
+			}
+		}, 500);
+		
+		$(document).on('click', '.tutorial', function(){
+			$(this).addClass('hidden');
+			clearInterval(tutorialInterval);
+			clearTimeout(tutorialTimeout);
+			tutorialInterval = null;
+			tutorialTimeout = null;
+		});
 	});	
 	
 })(jQuery);
