@@ -1,5 +1,7 @@
 (function($){	
 	
+	var timer = null;
+	
 	var responses = new ResponseHandler();
 	
 	var itemIndex = 0;
@@ -200,13 +202,14 @@
 		progress = $("#progress").roundSlider(progressOptions);
 		
 		rotaryEventHandler = function(e) {
+			var prevVal;
             if (e.detail.direction === 'CW') {
                 /* Right direction */
-				var prevVal = slider.roundSlider("getValue");
+				prevVal = slider.roundSlider("getValue");
 				slider.roundSlider("setValue" , (prevVal+1));
             } else if (e.detail.direction === 'CCW') {
                 /* Left direction */
-				var prevVal = slider.roundSlider("getValue");
+				prevVal = slider.roundSlider("getValue");
 				slider.roundSlider("setValue" , (prevVal-1));
             }
             
@@ -275,6 +278,19 @@
         		slider.roundSlider("setValue" , 5);	
         	}
     	});
+        
+		
+		$('.start').on('click', function(){
+        	timer = new TimeHandler();
+    	});
+		
+		$(document).on('click', '.finish', function(){
+			timer.stop();
+			responses.setStartTime(timer.startTimestamp);
+			responses.setDuration(timer.getDurationString());
+			timer.show();
+    	});
+        
 	});	
 	
 })(jQuery);

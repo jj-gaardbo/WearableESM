@@ -10,6 +10,20 @@ app adding his own styles here
 	visibility: hidden;
 }
 
+.time{
+	display: block;
+	position: absolute;
+	top: 30px;
+	width: 100px;
+	left: 50%;
+	margin-left: -50px;
+	text-align: center;
+	color: #fff;
+	z-index: 89;
+	font-size: 1.3em;
+	margin-bottom: 20px;
+}
+
 .roundslider{
 	position: absolute;
 	top: 0;

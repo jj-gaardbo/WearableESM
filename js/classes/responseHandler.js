@@ -2,6 +2,8 @@ class ResponseHandler {
 	
 	constructor(){
 		this.responses = [];
+		this.startTimestamp = null;
+		this.durationstring = "";
 	}
 	
 	setResponse(index, value){
@@ -20,4 +22,11 @@ class ResponseHandler {
 		return this.responses;
 	}
 
+	setStartTime(startTime){
+		this.startTimestamp = startTime;
+	}
+	
+	setDuration(duration){
+		this.durationString = duration;
+	}
 }
