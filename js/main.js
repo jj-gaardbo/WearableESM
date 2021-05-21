@@ -1,5 +1,6 @@
 (function($){
 	
+	var SCROLL_STEP = 50;
 	var counter = 0;
 	var colorManager = new ColorManager();
 	var tutorialInterval = null;
@@ -8,6 +9,8 @@
 	var responses = new ResponseHandler();
 	var hrHandler = new HRHandler();
 	var itemIndex = 0;
+	var feedbackTimeout = null;
+	var feedbackTimeout = 3000;
 	
 	var roundSliderOptions = {
 			// min / max value
@@ -240,7 +243,7 @@
 		var heartRate = hrmInfo.heartRate;
 		var rrInterval = hrmInfo.rRInterval;
 		if(heartRate > 0){
-			$('div.hr').html("<p>"+heartRate + " " + rrInterval+"</p>");
+			$('div.hr').html('<p><svg version="1.1" x="0px" y="0px" width="30px" height="25.148px" viewBox="0 0 30 25.148" enable-background="new 0 0 30 25.148" xml:space="preserve"><g><path fill-rule="evenodd" clip-rule="evenodd" fill="#FF0000" d="M14.991,25.148c2.114-1.776,4.175-3.477,6.196-5.22 c1.243-1.077,2.454-2.198,3.641-3.342c1.512-1.46,2.93-3.006,3.95-4.869c1.059-1.935,1.506-4.001,1.036-6.173 c-1.081-5.004-6.892-7.195-11.111-4.151c-1.108,0.799-1.999,1.904-2.98,2.879c-0.253,0.251-0.467,0.542-0.728,0.847 c-0.265-0.311-0.473-0.585-0.712-0.832c-0.855-0.882-1.646-1.847-2.598-2.612C9.641,0.03,7.291-0.407,4.784,0.396 C1.3,1.513-0.577,5.01,0.158,8.829c0.418,2.17,1.498,4.001,2.973,5.57c1.671,1.777,3.422,3.49,5.236,5.124 C10.505,21.447,12.746,23.252,14.991,25.148z"/></g></svg> '+heartRate + ' <svg version="1.1" x="0px" y="0px" width="30px" height="25.148px" viewBox="0 0 30 25.148" enable-background="new 0 0 30 25.148" xml:space="preserve"><g><g><path fill="#FF0000" d="M0,25.123V0.003h6.682c1.68,0,2.901,0.226,3.663,0.677c0.761,0.451,1.371,1.253,1.829,2.407 s0.687,2.474,0.687,3.958c0,1.884-0.347,3.441-1.041,4.669c-0.693,1.228-1.73,2.002-3.11,2.321c0.687,0.641,1.253,1.343,1.7,2.108 s1.05,2.125,1.808,4.078l1.92,4.9H10.34l-2.295-5.466c-0.815-1.953-1.373-3.185-1.673-3.692c-0.3-0.508-0.618-0.857-0.955-1.045 c-0.336-0.188-0.869-0.283-1.598-0.283H3.175v10.487H0z M3.175,10.627h2.349c1.523,0,2.474-0.103,2.853-0.308 c0.379-0.206,0.676-0.559,0.89-1.063c0.214-0.503,0.322-1.131,0.322-1.885c0-0.845-0.141-1.528-0.424-2.047 C8.882,4.804,8.484,4.476,7.969,4.338c-0.257-0.057-1.03-0.085-2.317-0.085H3.175V10.627z"/> <path fill="#FF0000" d="M15.863,25.123V0.003h6.682c1.682,0,2.902,0.226,3.663,0.677c0.762,0.451,1.371,1.253,1.828,2.407 c0.459,1.154,0.687,2.474,0.687,3.958c0,1.884-0.346,3.441-1.04,4.669c-0.693,1.228-1.729,2.002-3.111,2.321 c0.687,0.641,1.253,1.343,1.701,2.108c0.446,0.765,1.05,2.125,1.807,4.078l1.92,4.9h-3.797l-2.296-5.466 c-0.814-1.953-1.372-3.185-1.673-3.692c-0.3-0.508-0.618-0.857-0.954-1.045c-0.335-0.188-0.869-0.283-1.599-0.283h-0.644v10.487 H15.863z M19.038,10.627h2.349c1.523,0,2.476-0.103,2.854-0.308c0.38-0.206,0.676-0.559,0.891-1.063 c0.214-0.503,0.321-1.131,0.321-1.885c0-0.845-0.142-1.528-0.423-2.047c-0.283-0.521-0.682-0.849-1.196-0.986 c-0.258-0.057-1.03-0.085-2.317-0.085h-2.478V10.627z"/></g></g></svg> ' + rrInterval+'</p>');
 			hrHandler.addHR(heartRate);
 			
 			if(rrInterval > 0){
@@ -254,44 +257,78 @@
     }
 	
 	function rotaryEventHandler(e) {
-		var prevVal;
-
-		// Remove tutorial as rotary bezel has been used
-		$('.tutorial').addClass('hidden');
-		clearInterval(tutorialInterval);
-		clearTimeout(tutorialTimeout);
+		var currPage = $('.ui-page-active');
 		
-		// Detect rotary bezel direction
-        if (e.detail.direction === 'CW') {
-			prevVal = slider.roundSlider("getValue");
-			slider.roundSlider("setValue" , (prevVal+1));
-        } else if (e.detail.direction === 'CCW') {
-			prevVal = slider.roundSlider("getValue");
-			slider.roundSlider("setValue" , (prevVal-1));
-        }
+		if(!currPage.hasClass('scroll-page')){
+			var prevVal;
+	
+			// Remove tutorial as rotary bezel has been used
+			$('.tutorial').addClass('hidden');
+			clearInterval(tutorialInterval);
+			clearTimeout(tutorialTimeout);
+			
+			// Detect rotary bezel direction
+	        if (e.detail.direction === 'CW') {
+				prevVal = slider.roundSlider("getValue");
+				slider.roundSlider("setValue" , (prevVal+1));
+	        } else if (e.detail.direction === 'CCW') {
+				prevVal = slider.roundSlider("getValue");
+				slider.roundSlider("setValue" , (prevVal-1));
+	        }
+	        
+	        // Hide back button on first item but show next button,
+	        if(itemIndex <= 0){
+	        	$('.rs-tooltip button.back').addClass('hidden');
+	        	$('.rs-tooltip button.continue').removeClass('hidden');
+	        } 
+	
+	        else if(itemIndex >= items.length -1){
+	        	$('.rs-tooltip button.continue').addClass('hidden');
+	        	$('.rs-tooltip button.back').removeClass('hidden');
+	        	$('.rs-tooltip button.finish').removeClass('hidden');
+	       
+	        } else {
+	        	$('.rs-tooltip button.continue').removeClass('hidden');
+	        	$('.rs-tooltip button.back').removeClass('hidden');
+	        }
+	        
+	        //Change indicator color depending on value chosen
+	    	colorManager.updateColor($(document).find('.indicator'), slider.roundSlider("getValue"), 'text');
+	    	colorManager.updateColor($(document).find('.rs-range-color'), slider.roundSlider("getValue"), 'background');
+	    	
+	        responses.setResponse(parseInt(itemIndex), slider.roundSlider("getValue"));
         
-        // Hide back button on first item but show next button,
-        if(itemIndex <= 0){
-        	$('.rs-tooltip button.back').addClass('hidden');
-        	$('.rs-tooltip button.continue').removeClass('hidden');
-        } 
-
-        else if(itemIndex >= items.length -1){
-        	$('.rs-tooltip button.continue').addClass('hidden');
-        	$('.rs-tooltip button.back').removeClass('hidden');
-        	$('.rs-tooltip button.finish').removeClass('hidden');
-       
-        } else {
-        	$('.rs-tooltip button.continue').removeClass('hidden');
-        	$('.rs-tooltip button.back').removeClass('hidden');
-        }
-        
-        //Change indicator color depending on value chosen
-    	colorManager.updateColor($(document).find('.indicator'), slider.roundSlider("getValue"), 'text');
-    	colorManager.updateColor($(document).find('.rs-range-color'), slider.roundSlider("getValue"), 'background');
-    	
-        responses.setResponse(parseInt(itemIndex), slider.roundSlider("getValue"));
+		}
     };
+    
+	function initScroll(e){
+        var page = e.target;
+        elScroller = page.querySelector(".ui-scroller");
+
+        // rotary event handler
+        rotaryEventHandlerScroll = function(e) {
+           if (e.detail.direction === "CW") { // Right direction
+              elScroller.scrollTop += SCROLL_STEP;
+           } else if (e.detail.direction === "CCW") { // Left direction
+              elScroller.scrollTop -= SCROLL_STEP;
+           }
+        };
+
+        // register rotary event
+        document.addEventListener("rotarydetent", rotaryEventHandlerScroll, false);
+
+        // unregister rotary event
+        page.addEventListener("pagebeforehide", function pageHideHanlder() {
+           page.removeEventListener("pagebeforehide", pageHideHanlder, false);
+           document.removeEventListener("rotarydetent", rotaryEventHandlerScroll, false);
+        }, false);
+
+    }
+		
+	var startPage = document.getElementById("start-page");
+	var submitPage = document.getElementById("submit-page");
+	startPage.addEventListener("pagebeforeshow", initScroll, false);
+	submitPage.addEventListener("pagebeforeshow", initScroll, false);
 	
 	function runApp(){
 		
@@ -314,9 +351,17 @@
 				  url: "https://gaardbodigital.dk/dbwrite.php",
 				  data: JSON.stringify(data),
 				  success: function(resp){
-					  console.log("SUCCESS");
-					  console.log(resp);
-					  resetApp();
+					  $('.feedback').removeClass('hidden');
+					  feedbackTimer = setTimeout(function(){
+						  $('.feedback').addClass('hidden');  
+						  clearTimeout(feedbackTimer);
+						  resetApp();
+						  try {
+							  tizen.application.getCurrentApplication().exit();
+						  } catch (ignore) {
+							  console.log("Exit error");
+						  }
+					  }, feedbackTimeout);
 				  }
 				});
 

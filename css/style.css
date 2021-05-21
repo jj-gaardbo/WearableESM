@@ -26,6 +26,28 @@ app adding his own styles here
 	transition: all 0.3s ease;
 }
 
+.feedback{
+	background-color: #000000;
+	opacity: 1;
+	width: 360px;
+	height: 360px;
+	position: absolute;
+	z-index: 999;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.feedback p{
+	box-sizing: border-box;
+	padding: 70px 20px 40px;
+}
+
 .tutorial:before{
 	content: '';
 	display: block;
@@ -85,6 +107,15 @@ div.hr{
 	font-size: 0.5em;
 }
 
+div.hr svg{
+	margin-bottom: -7px;
+	max-width: 15px;
+}
+
+div.hr svg:nth-child(2){
+	margin-left: 5px;
+}
+
 .time{
 	display: block;
 	position: absolute;
@@ -95,7 +126,7 @@ div.hr{
 	text-align: center;
 	color: #fff;
 	z-index: 89;
-	font-size: 1.3em;
+	font-size: 20pt;
 	margin-bottom: 20px;
 }
 
@@ -124,7 +155,7 @@ div.hr{
 }
 
 #progress .rs-range-color  {
-    background-color: rgba(255,255,255, 0.6);
+    background-color: rgba(255,255,255, 1);
     -webkit-transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -286,17 +317,18 @@ div.hr{
 	left: 0;
 	right: 0;
 	bottom: 0;
-	font-size: 0.8em;
+	font-size: 20pt;
 	text-align: center;
 	z-index: 99;
 	position: absolute;
 	box-sizing: border-box;
 	width: 360px;
 	height: 220px;
-	padding: 35px 60px 10px;
+	padding: 55px 60px 10px;
 }
 
 .item p{
+	line-height: 1.3em;
 	color: #fff;
 }
 
@@ -387,5 +419,16 @@ div.hr{
 }
 
 .ten--bg{
+	background-color: #006dfc;
+}
+
+#start-page p{
+	line-height: 1.3em;
+	box-sizing: border-box;
+	padding: 0 20px;
+	font-size: 20pt;
+}
+
+.start .ui-btn, .submit-link .ui-btn{
 	background-color: #006dfc;
 }

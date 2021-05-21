@@ -12,8 +12,10 @@
 </head>
 
 <body>
-   <div class="ui-page ui-page-active" id="start-page">
-      <div class="ui-content">
+   <div class="ui-page scroll-page ui-page-active" id="start-page">
+      <div class="ui-content start-page-content">
+      	<p>Respond to the form based on the specific activity, you undertook at the time of the signal.</p>
+      	<p>If you are not able to react to the signal within it's 1-hour lifetime, you can ignore it, and await coming signals.</p>
          <a href="page-slider" class="start">
          	<button type="button" class="ui-btn">Start</button>
          </a>
@@ -33,12 +35,16 @@
       </div>
    </div>
    
-     <div class="ui-page" id="submit-page">
+     <div class="ui-page scroll-page" id="submit-page">
 	  <span class="time"></span>
       <div class="ui-content">
-         <a href="#" id="submit">
+         <a href="#" id="submit" class="submit-link">
          	<button type="button" class="ui-btn">Submit</button>
          </a>
+         
+         <div class="feedback hidden">
+         	<p>Thank you for you response.</p>
+         </div>        
       </div>
    </div>
    	<script src="lib/tau/wearable/js/tau.min.js"></script>
